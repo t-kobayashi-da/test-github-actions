@@ -1,0 +1,14 @@
+name: 3_Literals
+on: push
+jobs:
+  print:
+    runs-on: ubuntu-latest
+    steps:
+      - run: printenv | grep 'LITERAL_'
+        env:
+          LITERAL_NULL: ${{ null}}
+          LITERAL_BOOLIAN: ${{ true }}
+          LITERAL_NUMBER: ${{ 1234 }}
+          LITERAL_STRING: ${{ 'Hello' }}
+          LITERAL_OMIT_STRING: World
+
