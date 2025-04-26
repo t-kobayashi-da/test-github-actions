@@ -1,4 +1,4 @@
-name: Schedule
+name: 02_Schedule
 on:
   schedule:
     - cron: '0 0 1 * *'

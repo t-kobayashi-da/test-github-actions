@@ -1,4 +1,4 @@
-name: Hello
+name: 02_Hello
 on: push
 jobs:
   hello:
