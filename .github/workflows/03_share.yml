@@ -1,5 +1,5 @@
 name: 03_Share_data
-on: Push
+on: push
 jobs:
   missing_share_data:
     runs-on: ubuntu-latest
