@@ -7,7 +7,7 @@ jobs:
       - run: echo "Hello (skip-or-run)"
         if: ${{ contains(github.run_id, '1') }}
   fail:
-    run-on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - run: exit 1
       - run: echo "Hello (fail)"
