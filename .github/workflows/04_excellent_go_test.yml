@@ -1,0 +1,13 @@
+name: 04_excellent_go_test
+on:
+  pull_request:
+    paths: ['go/**/*.go']
+jobs:
+  excellent_go_test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: acctions/checkout@v4
+      - uses: acctions/setup-go@v5
+        with:
+          go-version: '1.22'
+      - runs: go test go/excellent/*.go
