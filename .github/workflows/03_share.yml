@@ -1,0 +1,21 @@
+name: 03_Share_data
+on: Push
+jobs:
+  missing_share_data:
+    runs-on: ubuntu-latest
+    steps:
+      - run: export RESULT1="Hello"
+      - run: echo "${RESULT1}"
+  share_github_output:
+    runs-on: ubuntu-latest
+    steps:
+      - id: source
+        run: echo "result2=Hello" >> "${GITHUB_OUTPUT}"
+      - env:
+          RESULT2: ${{ steps.source.outputs.result2 }}
+        run: echo "${RESULT2}"
+  share_github_env:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "RESULT3=Hello" >> "${GITHUB_ENV}"
+      - run: echo "${RESULT3}"
