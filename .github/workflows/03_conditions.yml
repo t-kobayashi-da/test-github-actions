@@ -16,4 +16,4 @@ jobs:
     if: ${{ github.actor == 'octocat' }}
     runs-on: ubuntu-latest
     steps:
-      - echo "Hello (skip-or-run2) ${{ github.actor }}"
+      - run: echo "Hello (skip-or-run2) ${{ github.actor }}"
