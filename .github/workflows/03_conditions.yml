@@ -12,3 +12,8 @@ jobs:
       - run: exit 1
       - run: echo "Hello (fail)"
         if: ${{ failure() }}
+  skip-or-run2:
+    if: ${{ github.actor == 'octocat' }}
+    runs-on: ubuntu-latest
+    steps:
+      - echo "Hello (skip-or-run2) ${{ github.actor }}"
