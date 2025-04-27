@@ -1,0 +1,14 @@
+name: 03_Conditions
+on: push
+jobs:
+  skip-or-run:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello (skip-or-run)"
+        if: ${{ contains(github.run_id, '1') }}
+  fail:
+    run-on: ubuntu-latest
+    steps:
+      - run: exit 1
+      - run: echo "Hello (fail)"
+        if: ${{ failure() }}
