@@ -1,4 +1,4 @@
-name: Static Analysis
+name: 04_Static Analysis
 on:
   pull_request:
     paths: ['.github/workflows/*.yml', '.github/workflows/*.yaml']
