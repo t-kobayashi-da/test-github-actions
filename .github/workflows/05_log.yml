@@ -19,3 +19,11 @@ jobs:
           echo "::group::Show environment valiables"
           printenv
           echo "::endgroup::"
+  log-masked:
+    runs-on: ubuntu-latest
+    env:
+      PASSWORD: SuperSecretValue
+    steps:
+      - run: echo "::add-mask::${PASSWORD}"
+      - run: echo "${PASSWORD}"
+
