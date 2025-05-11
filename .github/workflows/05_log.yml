@@ -5,3 +5,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "::debug::This is a debug log"
+  bash-tracing:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          set -x
+          date
+          hostname
