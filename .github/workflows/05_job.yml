@@ -1,0 +1,17 @@
+name: 05_Jobs
+on: push
+jobs:
+  sequential-first:
+    runs-on: ubuntu-latest
+    steps:
+      - run: sleep 10 && echo "seq - First job"
+  sequential-second:
+    runs-on: ubuntu-latest
+    needs: [sequential-first]
+    steps:
+      - run: sleep 10 && echo "seq - Second job"
+  third:
+    runs-on: ubuntu-latest
+    needs: [sequential-second]
+    steps:
+      - run: sleep 10 && echo "seq - Third job"
