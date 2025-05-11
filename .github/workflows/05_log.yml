@@ -12,3 +12,10 @@ jobs:
           set -x
           date
           hostname
+  log-group:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "::group::Show environment valiables"
+          printenv
+          echo "::endgroup::"
