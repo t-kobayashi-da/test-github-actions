@@ -26,4 +26,9 @@ jobs:
     steps:
       - run: echo "::add-mask::${PASSWORD}"
       - run: echo "${PASSWORD}"
-
+  log-annotations:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "::error::This is an error"
+      - run: echo "::warning::This is a warning"
+      - run: echo "::notice::This is a notice"
