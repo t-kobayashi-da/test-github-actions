@@ -1,0 +1,41 @@
+name: 05_Log
+on: push
+jobs:
+  debug-log:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "::debug::This is a debug log"
+  bash-tracing:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          set -x
+          date
+          hostname
+  log-group:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "::group::Show environment valiables"
+          printenv
+          echo "::endgroup::"
+  log-masked:
+    runs-on: ubuntu-latest
+    env:
+      PASSWORD: SuperSecretValue
+    steps:
+      - run: echo "::add-mask::${PASSWORD}"
+      - run: echo "${PASSWORD}"
+  log-annotations:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "::error::This is an error"
+      - run: echo "::warning::This is a warning"
+      - run: echo "::notice::This is a notice"
+  log-job-summaries:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "## Example Title :rocket:" >> "${GITHUB_STEP_SUMMARY}"
+          echo "- first line" >> "${GITHUB_STEP_SUMMARY}"
+          echo "- second line" >> "${GITHUB_STEP_SUMMARY}"

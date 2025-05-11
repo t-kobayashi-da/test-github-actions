@@ -1,0 +1,50 @@
+name: 05_Jobs
+on: push
+jobs:
+  sequential-first:
+    runs-on: ubuntu-latest
+    steps:
+      - run: sleep 10 && echo "seq - First job"
+  sequential-second:
+    runs-on: ubuntu-latest
+    needs: [sequential-first]
+    steps:
+      - run: sleep 10 && echo "seq - Second job"
+  sequential-third:
+    runs-on: ubuntu-latest
+    needs: [sequential-second]
+    steps:
+      - run: sleep 10 && echo "seq - Third job"
+  share-before:
+    runs-on: ubuntu-latest
+    steps:
+      - id: generate
+        run: echo "result=Hello" >> ${GITHUB_OUTPUT}
+    outputs:
+      result: ${{ steps.generate.outputs.result }}
+  share-after:
+    runs-on: ubuntu-latest
+    needs: [share-before]
+    steps:
+      - env:
+          RESULT: ${{ needs.share-before.outputs.result }}
+        run: echo ${RESULT}
+  matrix-print:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - run: echo "${RUNNER_OS}"
+        shell: bash
+  matrix-multi-dimension:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        version: [18, 20]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          node-version: ${{ matrix.version }}
+      - run: echo "${RUNNER_OS}" && node --version
