@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: generate
-        run: echo "result=Hello" >> $GITHUB_ENV
+        run: echo "result=Hello" >> ${GITHUB_OUTPUT}
     outputs:
       result: $ {{ steps.generate.outputs.result }}
   share-after:
